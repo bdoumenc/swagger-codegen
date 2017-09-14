@@ -35,6 +35,9 @@ public class PatchRequest extends Request<String> {
 
   @Override
   public String getBodyContentType() {
+    if(contentType != null) {
+      return contentType;
+    }
     if(entity == null) {
         return null;
     }
@@ -83,9 +86,6 @@ public class PatchRequest extends Request<String> {
     }
     if (apiHeaders != null && !apiHeaders.equals(Collections.emptyMap())) {
       headers.putAll(apiHeaders);
-    }
-    if(contentType != null) {
-      headers.put("Content-Type", contentType);
     }
 
     return headers;
